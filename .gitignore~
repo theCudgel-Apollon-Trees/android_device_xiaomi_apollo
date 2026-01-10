@@ -1,0 +1,11 @@
+# Ignoriere Environment-Variablen und Keys
+.env
+config.js
+secrets.json
+*.key
+*.pem
+
+# Ignoriere auch Systemdateien oder Build-Ordner
+node_modules/
+dist/
+.DS_Store

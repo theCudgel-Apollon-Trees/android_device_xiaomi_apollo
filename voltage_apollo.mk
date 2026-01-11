@@ -22,7 +22,9 @@ PRODUCT_NAME := voltage_apollo
 PRODUCT_DEVICE := apollo
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_BRAND := Xiaomi
-PRODUCT_MODEL := Xiaomi Mi 10T
+PRODUCT_MODEL := Xiaomi Mi 10T Pro
+VOLTAGE_MAINTAINER := Michael Koehlmeier
+VOLTAGE_BUILD_TYPE := Unofficial
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
@@ -30,3 +32,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc="apollo_global-user 12 RKQ1.211001.001 V14.0.4.0.SJDMIXM release-keys"
 
 PRODUCT_PACKAGES += LMCCam
+
+WITH_GAPPS := true
+TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_FACE_UNLOCK_SUPPORTED := true
+PRODUCT_DEFAULT_DEV_CERTIFICATE := device/xiaomi/apollo/certs/releasekey

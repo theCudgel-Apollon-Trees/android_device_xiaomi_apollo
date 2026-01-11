@@ -133,7 +133,9 @@ PRODUCT_PACKAGES += \
     libmegface \
     libpiex_shim
 
-$(call soong_config_set,camera,override_format_from_reserved,true)
+SOONG_CONFIG_NAMESPACES += camera
+SOONG_CONFIG_camera += override_format_from_reserved
+SOONG_CONFIG_camera_override_format_from_reserved := "true"
 
 # Configstore
 PRODUCT_PACKAGES += \
@@ -165,10 +167,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.memtrack-service
 
-$(call soong_config_set,qtidisplay,gralloc_handle_has_reserved_size,true)
+SOONG_CONFIG_NAMESPACES += qtidisplay
+SOONG_CONFIG_qtidisplay += gralloc_handle_has_reserved_size
+SOONG_CONFIG_qtidisplay_gralloc_handle_has_reserved_size := "true"
 
 # Dolby
-$(call inherit-product, hardware/dolby/dolby.mk)
+#$(call inherit-product, hardware/dolby/dolby.mk)
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -231,7 +235,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vendor.lineage.health-service.default
 
-$(call soong_config_set,lineage_health,charging_control_supports_bypass,false)
+# theCudgel: causes errors, false or unset should be ok
+# $(call soong_config_set,lineage_health,charging_control_supports_bypass,'false')
 
 # Logging
 SPAMMY_LOG_TAGS := \
@@ -276,7 +281,8 @@ PRODUCT_PACKAGES += \
     media_codecs_performance_c2.xml \
     video_system_specs.json
 
-$(call soong_config_set,stagefright,target_disable_thumbnail_block_model,true)
+# theCudgel: most likely unneccessary for the apollo
+#$(call soong_config_set,stagefright,target_disable_thumbnail_block_model,true)
 
 # NFC
 PRODUCT_PACKAGES += \

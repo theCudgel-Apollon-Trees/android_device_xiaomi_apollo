@@ -77,7 +77,7 @@ BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 TARGET_KERNEL_SOURCE := kernel/xiaomi/apollo
 TARGET_KERNEL_CONFIG := \
-    vendor/apollo_defconfig \
+    apollo_defconfig \
     vendor/debugfs.config
 
 # Kernel Clang Flags
@@ -194,4 +194,3 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 # Inherit the proprietary files
 include vendor/xiaomi/apollo/BoardConfigVendor.mk
 
-PRODUCT_DEFAULT_DEV_CERTIFICATE := device/xiaomi/apollo/certs/releasekey

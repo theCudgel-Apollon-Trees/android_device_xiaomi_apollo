@@ -9,6 +9,9 @@ DEVICE_PATH := device/xiaomi/apollo
 # A/B
 AB_OTA_UPDATER := false
 
+# PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/voltage-priv/keys/releasekey
+# PRODUCT_OTACERT := vendor/voltage-priv/keys/releasekey
+
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-2a-dotprod
@@ -194,3 +197,12 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 # Inherit the proprietary files
 include vendor/xiaomi/apollo/BoardConfigVendor.mk
 
+# GApps Board-Konfiguration
+-include vendor/gapps/common/BoardConfigVendor.mk
+-include vendor/gapps/arm64/BoardConfigVendor.mk
+
+# OVERRIDE_TARGET_FLATTEN_APEX := true
+
+# Fix für Camera Format (Soong Config Set)
+#TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED :=
+#$(call soong_config_set,camera,override_format_from_reserved,0x19)

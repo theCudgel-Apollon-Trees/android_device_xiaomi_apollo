@@ -7,7 +7,11 @@
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+WITH_GAPPS := true
+
 $(call inherit-product, vendor/gapps/common/common-vendor.mk)
+$(call inherit-product, vendor/gapps/arm64/arm64-vendor.mk)
 
 # Inherit some common Voltage stuff.
 $(call inherit-product, vendor/voltage/config/common_full_phone.mk)
@@ -33,7 +37,10 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 
 PRODUCT_PACKAGES += LMCCam
 
-WITH_GAPPS := true
 TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_FACE_UNLOCK_SUPPORTED := true
 PRODUCT_DEFAULT_DEV_CERTIFICATE := device/xiaomi/apollo/certs/releasekey
+PRODUCT_OTACERT := vendor/voltage-priv/keys/releasekey
+
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    system/apex/%

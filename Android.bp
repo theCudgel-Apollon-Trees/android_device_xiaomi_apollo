@@ -53,3 +53,8 @@ xiaomi_kona_wifi_install_symlink {
         },
     },
 }
+
+android_app_certificate {
+    name: "com.android.telephonycore.certificate.override",
+    certificate: "platform",
+}

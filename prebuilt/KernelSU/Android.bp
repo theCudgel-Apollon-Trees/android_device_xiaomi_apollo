@@ -1,0 +1,15 @@
+cc_prebuilt_library_shared {
+    name: "libkernelsu",
+    srcs: ["libkernelsu.so"],
+
+    // WICHTIG: Nicht verändern, sonst geht sie kaputt
+    strip: {
+        none: true,
+    },
+
+    // Wir installieren sie nach /product/lib64/
+    product_specific: true,
+
+    // Überspringe Checks (weil wir keine Source dazu haben)
+    check_elf_files: false,
+}

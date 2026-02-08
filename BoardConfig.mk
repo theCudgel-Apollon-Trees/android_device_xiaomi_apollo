@@ -206,3 +206,22 @@ include vendor/xiaomi/apollo/BoardConfigVendor.mk
 # Fix für Camera Format (Soong Config Set)
 #TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED :=
 #$(call soong_config_set,camera,override_format_from_reserved,0x19)
+
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+
+BUILD_BROKEN_DUP_SYSPROP := true
+
+# FORCE DEBUGGABLE (Fix für ADB Root)
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.debuggable=1 \
+    ro.adb.secure=0 \
+    persist.sys.usb.config=adb
+
+# WICHTIG: Damit der Build nicht wegen "Duplicate key" abbricht
+BUILD_BROKEN_DUP_SYSPROP := true
+
+
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    persist.sys.usb.config=adb
+
+

@@ -1,0 +1,43 @@
+diff --git a/bpf/loader/NetBpfLoad.cpp b/bpf/loader/NetBpfLoad.cpp
+index 238864798b..edbcf1058a 100644
+--- a/bpf/loader/NetBpfLoad.cpp
++++ b/bpf/loader/NetBpfLoad.cpp
+@@ -36,7 +36,6 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+-#include <string>
+ #include <sys/mman.h>
+ #include <sys/socket.h>
+ #include <sys/stat.h>
+@@ -1625,11 +1624,12 @@ static int doLoad(char** argv, char * const envp[]) {
+     }
+ 
+     // 25Q2 bumps the kernel requirement up to 5.4
++    // disabled for apollo
+     // see also: //system/netd/tests/kernel_test.cpp TestKernel54
+-    if (isAtLeast25Q2 && !isAtLeastKernelVersion(5, 4)) {
++    /*if (isAtLeast25Q2 && !isAtLeastKernelVersion(5, 4)) {
+         ALOGE("Android 25Q2 requires kernel 5.4.");
+         return 6;
+-    }
++    }*/
+ 
+     // 25Q4 bumps the kernel requirement up to 5.10
+     // see also: //system/netd/tests/kernel_test.cpp TestKernel510
+diff --git a/bpf/netd/BpfHandler.cpp b/bpf/netd/BpfHandler.cpp
+index 7367ec5e97..4b6266e125 100644
+--- a/bpf/netd/BpfHandler.cpp
++++ b/bpf/netd/BpfHandler.cpp
+@@ -102,9 +102,9 @@ static Status initPrograms(const char* cg2_path) {
+     }
+ 
+     // 25Q2 bumps the kernel requirement up to 5.4
+-    if (isAtLeast25Q2 && !isAtLeastKernelVersion(5, 4)) {
++    /*if (isAtLeast25Q2 && !isAtLeastKernelVersion(5, 4)) {
+         return Status("25Q2+ platform with kernel version < 5.4.0 is unsupported");
+-    }
++    }*/
+ 
+     unique_fd cg_fd(open(cg2_path, O_DIRECTORY | O_RDONLY | O_CLOEXEC));
+     if (!cg_fd.ok()) return statusFromErrno(errno, "Opening cgroup dir failed");

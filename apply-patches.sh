@@ -20,3 +20,15 @@ fi
 # Zurück zum Start
 cd $TOP
 echo "=== Patchen abgeschlossen ==="
+
+
+# 2. Netd Kernel Check Patch
+echo "Patching Netd..."
+cd $TOP/packages/modules/Connectivity
+git apply --check $TOP/device/xiaomi/apollo/patches/bypass_netd_check.patch 2>/dev/null
+if [ $? -eq 0 ]; then
+    git apply $TOP/device/xiaomi/apollo/patches/bypass_netd_check.patch
+    echo " -> Netd Patch Erfolg!"
+else
+    echo " -> Netd Patch schon drauf oder Fehler."
+fi

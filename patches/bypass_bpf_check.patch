@@ -1,0 +1,27 @@
+diff --git a/bpf/loader/NetBpfLoad.cpp b/bpf/loader/NetBpfLoad.cpp
+index 238864798b..edbcf1058a 100644
+--- a/bpf/loader/NetBpfLoad.cpp
++++ b/bpf/loader/NetBpfLoad.cpp
+@@ -36,7 +36,6 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+-#include <string>
+ #include <sys/mman.h>
+ #include <sys/socket.h>
+ #include <sys/stat.h>
+@@ -1625,11 +1624,12 @@ static int doLoad(char** argv, char * const envp[]) {
+     }
+ 
+     // 25Q2 bumps the kernel requirement up to 5.4
++    // disabled for apollo
+     // see also: //system/netd/tests/kernel_test.cpp TestKernel54
+-    if (isAtLeast25Q2 && !isAtLeastKernelVersion(5, 4)) {
++    /*if (isAtLeast25Q2 && !isAtLeastKernelVersion(5, 4)) {
+         ALOGE("Android 25Q2 requires kernel 5.4.");
+         return 6;
+-    }
++    }*/
+ 
+     // 25Q4 bumps the kernel requirement up to 5.10
+     // see also: //system/netd/tests/kernel_test.cpp TestKernel510

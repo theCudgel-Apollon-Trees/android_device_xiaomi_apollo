@@ -39,7 +39,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.vulkan.compute-0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.compute-0.xml \
     frameworks/native/data/etc/android.hardware.vulkan.level-1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.level-1.xml \
     frameworks/native/data/etc/android.hardware.vulkan.version-1_1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version-1_1.xml \
-    frameworks/native/data/etc/android.hardware.wifi.aware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.aware.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml \
     frameworks/native/data/etc/android.hardware.wifi.rtt.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.rtt.xml \
@@ -259,6 +258,10 @@ PRODUCT_PACKAGES += \
 
 $(call soong_config_set_bool,lineage_health,charging_control_supports_bypass,false)
 
+DEVICE_PACKAGE_OVERLAYS += device/xiaomi/apollo/overlay
+# Custom Wi-Fi Overlay (Disable MAC Randomization)
+DEVICE_PACKAGE_OVERLAYS += device/xiaomi/apollo/overlay-wifi
+
 # Logging
 SPAMMY_LOG_TAGS := \
     MiStcImpl \
@@ -309,7 +312,10 @@ PRODUCT_PACKAGES += \
     android.hardware.nfc-service.nxp \
     com.android.nfc_extras \
     nqnfcinfo \
-    Tag
+    Tag \
+    NfcNci \
+    SecureElement \
+    com.android.nfcservices
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.ese.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.ese.xml \
@@ -479,3 +485,7 @@ PRODUCT_COPY_FILES += \
 
 # Inherit from vendor blobs
 $(call inherit-product, vendor/xiaomi/apollo/apollo-vendor.mk)
+
+# GApps Inline-Integration
+WITH_GAPPS := true
+$(call inherit-product-if-exists, vendor/gapps/arm64/arm64-vendor.mk)

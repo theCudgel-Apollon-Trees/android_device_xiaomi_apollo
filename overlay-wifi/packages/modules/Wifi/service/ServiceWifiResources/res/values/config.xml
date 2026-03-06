@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="config_wifiDefaultMacRandomizationSetting">0</integer>
+    
+    <bool name="config_wifi_mac_randomization_supported">false</bool>
+</resources>

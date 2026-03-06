@@ -21,9 +21,16 @@ PRODUCT_NAME := voltage_apollo
 PRODUCT_DEVICE := apollo
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_BRAND := Xiaomi
-PRODUCT_MODEL := Xiaomi Mi 10T
+PRODUCT_MODEL := Xiaomi Mi 10T Pro
+VOLTAGE_BUILD_TYPE := CUSTOM
+
+PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/voltage-priv/keys/releasekey
+PRODUCT_EXTRA_RECOVERY_KEYS += vendor/voltage-priv/keys/releasekey
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
+
+PRODUCT_COPY_FILES += \
+    device/xiaomi/apollo/configs/permissions/default-permissions-aa.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default-permissions/default-permissions-aa.xml
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc="apollo_global-user 12 RKQ1.211001.001 V14.0.4.0.SJDMIXM release-keys" \
